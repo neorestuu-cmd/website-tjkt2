@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XI TJKT 2 - Network System</title>
+
+<style>
+
+body{
+margin:0;
+font-family: monospace;
+background:black;
+color:#00ff9c;
+}
+
+/* background animasi */
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
+/* header */
+
+header{
+text-align:center;
+padding:40px;
+border-bottom:1px solid #00ff9c;
+}
+
+header h1{
+font-size:40px;
+}
+
+nav{
+text-align:center;
+padding:15px;
+}
+
+nav a{
+color:#00ff9c;
+margin:20px;
+text-decoration:none;
+font-size:18px;
+}
+
+section{
+padding:50px;
+max-width:900px;
+margin:auto;
+}
+
+.card{
+border:1px solid #00ff9c;
+padding:20px;
+margin:20px 0;
+border-radius:10px;
+background:rgba(0,0,0,0.6);
+}
+
+.card:hover{
+box-shadow:0 0 20px #00ff9c;
+}
+
+footer{
+text-align:center;
+padding:20px;
+border-top:1px solid #00ff9c;
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<header>
+<h1>XI TJKT 2</h1>
+<p>Teknik Jaringan Komputer dan Telekomunikasi</p>
+</header>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#materi">Materi</a>
+<a href="#praktikum">Praktikum</a>
+<a href="#kelas">Kelas</a>
+</nav>
+
+<section id="home">
+<h2>Selamat Datang</h2>
+<p>Website resmi kelas XI TJKT 2. Tempat berbagi materi jaringan komputer, praktikum, dan project networking.</p>
+</section>
+
+<section id="materi">
+
+<h2>Materi Networking</h2>
+
+<div class="card">
+<h3>Fiber Optik</h3>
+<p>Belajar jenis kabel fiber optik, fungsi, dan cara instalasi jaringan berkecepatan tinggi.</p>
+</div>
+
+<div class="card">
+<h3>Topologi Jaringan</h3>
+<p>Mempelajari topologi star, bus, ring, mesh, dan penerapannya pada jaringan komputer.</p>
+</div>
+
+<div class="card">
+<h3>Routing & Mikrotik</h3>
+<p>Konfigurasi router, hotspot, firewall, dan manajemen bandwidth.</p>
+</div>
+
+</section>
+
+<section id="praktikum">
+
+<h2>Praktikum</h2>
+
+<div class="card">
+<h3>Crimping Kabel LAN</h3>
+<p>Praktik pemasangan konektor RJ45 pada kabel UTP.</p>
+</div>
+
+<div class="card">
+<h3>Setting Router</h3>
+<p>Konfigurasi router untuk membuat jaringan internet.</p>
+</div>
+
+<div class="card">
+<h3>Simulasi Jaringan</h3>
+<p>Membuat simulasi topologi jaringan menggunakan Cisco Packet Tracer.</p>
+</div>
+
+</section>
+
+<section id="kelas">
+
+<h2>XI TJKT 2</h2>
+<p>Kelas yang mempelajari teknologi jaringan komputer, server, fiber optik, dan telekomunikasi.</p>
+
+<div class="card">
+<h3>Fokus Pembelajaran</h3>
+<ul>
+<li>Administrasi Sistem Jaringan</li>
+<li>Fiber Optik</li>
+<li>Routing & Switching</li>
+<li>Server dan Cloud</li>
+</ul>
+</div>
+
+</section>
+
+<footer>
+<p>© 2026 XI TJKT 2 | Network Engineering</p>
+</footer>
+
+
+<script>
+
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+let text = "01";
+text = text.split("");
+
+let font_size = 14;
+let columns = canvas.width/font_size;
+
+let drops = [];
+
+for(let x=0;x<columns;x++)
+drops[x]=1;
+
+function draw(){
+
+ctx.fillStyle="rgba(0,0,0,0.05)";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="#00ff9c";
+ctx.font=font_size+"px monospace";
+
+for(let i=0;i<drops.length;i++){
+
+let t=text[Math.floor(Math.random()*text.length)];
+
+ctx.fillText(t,i*font_size,drops[i]*font_size);
+
+if(drops[i]*font_size>canvas.height && Math.random()>0.975)
+drops[i]=0;
+
+drops[i]++;
+}
+
+}
+
+setInterval(draw,33);
+
+</script>
+
+</body>
+</html>
